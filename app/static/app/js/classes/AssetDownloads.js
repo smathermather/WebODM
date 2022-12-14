@@ -62,7 +62,7 @@ const api = {
       
       
       new AssetDownloadSeparator(),
-      new AssetDownload(_("All Assets"),"all.zip","far fa-file-archive")
+      new AssetDownload(_("All Assets (except Point Cloud)"),"all.zip","far fa-file-archive")
     ];
   },
 
