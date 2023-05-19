@@ -164,7 +164,7 @@ def export_raster(input, output, **opts):
                         src_crs=src.crs,
                         dst_transform=transform,
                         dst_crs=dst_crs,
-                        resampling=Resampling.nearest)
+                        resampling=Resampling.lanczos)
 
         else:
             # No reprojection needed
