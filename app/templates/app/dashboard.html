@@ -39,6 +39,12 @@
 			</p>
 		{% endif %}
 
+        <h3>{% trans 'Welcome! ☺' %}</h3>
+        <p>
+            {% blocktrans %} You are currently in a demo. You cannot create new tasks and some features such as volume calculation and contours have been disabled, but you can look around to explore the software. {% endblocktrans %}
+        </p>
+
+
 		<div id="dashboard-app" data-dashboard></div>
 
 	{% endif %}

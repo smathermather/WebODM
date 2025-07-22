@@ -28,16 +28,21 @@ def index(request):
     if settings.SINGLE_USER_MODE and not request.user.is_authenticated:
         login(request, User.objects.get(username="admin"), 'django.contrib.auth.backends.ModelBackend')
 
+    # Auto login
+    if not request.user.is_authenticated:
+        login(request, User.objects.get(username="demouser"), 'django.contrib.auth.backends.ModelBackend')
+        return redirect('dashboard')
+
     return redirect(settings.LOGIN_REDIRECT_URL if request.user.is_authenticated
                     else settings.LOGIN_URL)
 
 @login_required
 def dashboard(request):
     no_processingnodes = ProcessingNode.objects.count() == 0
+    no_tasks = False
+    
     if no_processingnodes and settings.PROCESSING_NODES_ONBOARDING is not None:
         return redirect(settings.PROCESSING_NODES_ONBOARDING)
-
-    no_tasks = Task.objects.filter(project__owner=request.user).count() == 0
 
     # Create first project automatically
     if Project.objects.count() == 0:
